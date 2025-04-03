@@ -10,6 +10,6 @@ class DestroyController extends Controller
 {
     public function __invoke(Book $book){
         $book->delete();
-        return redirect()->route('books.index');
+        return redirect()->route('books.trash', compact('book'));
     }
 }
