@@ -9,10 +9,10 @@
                     </li>
                     @if($book->user_id === Auth::id())
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('posts.edit', $book -> id)}}">Изменить</a>
+                        <a class="nav-link" href="{{route('books.edit', $book -> id)}}">Изменить</a>
                     </li>
                     <li class="nav-item">
-                        <form action="{{route('posts.destroy', $book->id)}}" method="post">
+                        <form action="{{route('books.destroy', $book->id)}}" method="post">
                             @csrf
                             @method('delete')
                             <input type="submit" value="Удалить" class="nav-link">

@@ -23,7 +23,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         <div class="navbar-nav">
-                            <a class="nav-link active" href="{{route('posts.index')}}">Главная <span class="sr-only"></span></a>
+                            <a class="nav-link active" href="{{route('books.index')}}">Главная <span class="sr-only"></span></a>
                             @guest
                                 @if (Route::has('login'))
                                     <li class="nav-item">
@@ -32,7 +32,7 @@
                                 @endif
                             @else
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{route('posts.create')}}">Добавить книгу</a>
+                                    <a class="nav-link" href="{{route('books.create')}}">Добавить книгу</a>
                                 </li>
                             @endguest
                         </div>

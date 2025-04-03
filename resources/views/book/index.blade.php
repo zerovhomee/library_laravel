@@ -7,8 +7,8 @@
                     <div class="card" style="width: 18rem;">
                         <div class="card-body">
                             <h5 class="card-title">Автор: {{$book->user->name}}</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">{{$book->name}}</h6>
-                            <p class="card-text">{{$book->text}}</p>
+                            <h6 class="card-subtitle mb-2 text-muted">id:{{$book->id}}</h6>
+                            <p class="card-text">Название книги: {{$book->name}}</p>
                             <a href="{{route('books.show', $book->id)}}" class="card-link">Посмотреть</a>
                         </div>
                     </div>

@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @section('content')
     <div>
-        <form action="{{ route('books.update', $book->id) }}" method ="post">
+        <form action="{{ route('books.update', $book->id) }}" method ="post" enctype="multipart/form-data">
             @method('patch')
             @csrf
             <div class="form-group">
@@ -17,6 +17,10 @@
                 @error('text')
                 <p class="text-danger">{{$message}}</p>
                 @enderror
+            </div>
+            <div>
+                <label for="text_file">Или выберите текстовый файл:</label>
+                <input type="file" name="text_file" id="text_file" accept=".txt">
             </div>
             <button type="submit" class="btn btn-primary">Обновить</button>
         </form>

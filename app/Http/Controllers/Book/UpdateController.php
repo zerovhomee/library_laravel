@@ -12,10 +12,23 @@ class UpdateController extends Controller
     public function __invoke(Book $book){
         $data = request()->validate([
             'name'=>'required',
-            'text'=>'required',
+            'text'=>'nullable',
+            'text_file' => 'nullable|file|mimes:txt|max:2048',
 
         ]);
-        $book -> update($data);
+
+        if (request()->hasFile('text_file')) {
+            $file = request()->file('text_file');
+            $text = file_get_contents($file->getRealPath());
+            $data['text'] = $text;
+        }
+
+        $data_to_update = [];
+        $data_to_update['name'] = $data['name'];
+        $data_to_update['text'] = $data['text'];
+        $data_to_update += ['user_id' => Auth::id()];
+
+        $book -> update($data_to_update);
         return redirect()->route('books.show', $book->id);
     }
 }
