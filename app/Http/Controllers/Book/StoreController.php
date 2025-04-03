@@ -11,7 +11,7 @@ class StoreController extends Controller
 {
     public function __invoke(){
         $data = request()->validate([
-            'title'=>'required',
+            'name'=>'required',
             'text'=>'required',
         ]);
         $data += ['user_id' => Auth::id()];

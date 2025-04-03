@@ -12,6 +12,11 @@ class User extends Authenticatable
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
+    protected $table = 'users';
+
+    public function books(){
+        return $this->HasMany(Book::class,'user_id','id')->chaperone();
+    }
     /**
      * The attributes that are mass assignable.
      *

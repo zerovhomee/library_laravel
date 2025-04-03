@@ -11,7 +11,7 @@ class UpdateController extends Controller
 {
     public function __invoke(Book $book){
         $data = request()->validate([
-            'title'=>'required',
+            'name'=>'required',
             'text'=>'required',
 
         ]);
