@@ -23,7 +23,6 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         <div class="navbar-nav">
-                            <a class="nav-link active" href="{{route('books.index')}}">Мои книги <span class="sr-only"></span></a>
                             @guest
                                 @if (Route::has('login'))
                                     <li class="nav-item">
@@ -31,6 +30,8 @@
                                     </li>
                                 @endif
                             @else
+                                <a class="nav-link active" href="{{route('books.index')}}">Мои книги <span class="sr-only"></span></a>
+                                <a class="nav-link active" href="{{route('users.index')}}">Список пользователей <span class="sr-only"></span></a>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{route('books.create')}}">Добавить книгу</a>
                                 </li>

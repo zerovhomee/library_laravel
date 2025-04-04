@@ -10,7 +10,7 @@ class TrashController extends Controller
 {
     public function __invoke()
     {
-        $books = Book::onlyTrashed()->get();
+        $books = Book::onlyTrashed()->get()->where('user_id', auth()->id());
         return view('book.restore', compact('books'));
     }
 }
