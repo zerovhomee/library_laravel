@@ -10,7 +10,7 @@
 <body>
 <div class="container">
     <div id="app">
-        <nav class="navbar navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     Библиотека
@@ -23,7 +23,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         <div class="navbar-nav">
-                            <a class="nav-link active" href="{{route('books.index')}}">Главная <span class="sr-only"></span></a>
+                            <a class="nav-link active" href="{{route('books.index')}}">Мои книги <span class="sr-only"></span></a>
                             @guest
                                 @if (Route::has('login'))
                                     <li class="nav-item">
