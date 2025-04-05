@@ -17,6 +17,13 @@ class User extends Authenticatable
     public function books(){
         return $this->HasMany(Book::class,'user_id','id')->chaperone();
     }
+
+    public function sharedBooks()
+    {
+        return $this->belongsToMany(Book::class, 'book_accesses')
+            ->withPivot('permission')
+            ->withTimestamps();
+    }
     /**
      * The attributes that are mass assignable.
      *

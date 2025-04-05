@@ -9,6 +9,7 @@ use App\Http\Controllers\Book\StoreController;
 use App\Http\Controllers\Book\UpdateController;
 use App\Http\Controllers\Book\RestoreController;
 use App\Http\Controllers\Book\TrashController;
+use App\Http\Controllers\User\AccessController;
 use App\Http\Controllers\User\ListController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -28,6 +29,7 @@ Route::group([], function () {
 });
 
 Route::get('/users', ListController::class)->name('users.index');
+Route::get('/users/access', AccessController::class)->name('users.access');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

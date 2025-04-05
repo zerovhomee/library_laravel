@@ -36,7 +36,7 @@
                                     <a class="nav-link" href="{{route('books.create')}}">Добавить книгу</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{route('books.trash')}}">Удаленные записи</a>
+                                    <a class="nav-link" href="{{route('books.trash')}}">Удаленные книги</a>
                                 </li>
                             @endguest
                         </div>

@@ -16,4 +16,11 @@ class Book extends Model
     public function user(){
         return $this->belongsTo(User::class,'user_id','id');
     }
+
+    public function sharedUsers()
+    {
+        return $this->belongsToMany(User::class, 'book_accesses')
+            ->withPivot('permission')
+            ->withTimestamps();
+    }
 }
