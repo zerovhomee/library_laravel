@@ -39,17 +39,50 @@ class LibraryAccessController extends Controller
             return back()->with('error', 'Ошибка: '.$e->getMessage());
         }
     }
-    /*
-    public function revokeAccess($userId)
+
+    public function showAccessForm()
     {
-        $access = LibraryAccess::where('owner_id', auth()->id())
-            ->where('user_id', $userId)
-            ->firstOrFail();
-
-        $access->delete();
-
-        return response()->json(['message' => 'Доступ отозван']);
+        return view('library.form');
     }
+
+    public function accessLibrary(Request $request)
+    {
+        $validated = $request->validate([
+            'user_id' => 'required|integer|exists:users,id'
+        ]);
+
+        $userId = $validated['user_id'];
+        $user = User::find($validated['user_id']);
+
+        if (!$user) {
+            return back()->with('error', 'Пользователь не найден');
+        }
+
+        return redirect()->route('users.library.show', ['user' => $userId]);
+    }
+
+    public function showUserLibrary(User $user)
+    {
+        // Проверка прав происходит через Policy (автоматически)
+
+        // Проверка прав доступа
+        if (auth()->id() !== $user->id &&
+            !LibraryAccess::where('owner_id', $user->id)
+                ->where('user_id', auth()->id())
+                ->exists()) {
+            return redirect()->route('library.access.form')
+                ->with('error', 'У вас нет доступа к этой библиотеке');
+        }
+
+        // Загружаем книги с информацией о владельце
+        $books = $user->books()->with('user')->get();
+
+        return view('library.show', [
+            'books' => $books,
+            'libraryOwner' => $user
+        ]);
+    }
+    /*
 
     public function mySharedUsers()
     {

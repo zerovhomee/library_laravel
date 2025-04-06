@@ -35,6 +35,16 @@ Route::get('/users/access', AccessController::class)->name('users.access');
 Route::post('/users/access', [LibraryAccessController::class, 'grantAccessById'])
     ->name('users.access.process');
 
+
+Route::get('/users/show', [LibraryAccessController::class, 'showAccessForm'])
+    ->name('users.show.form');
+
+Route::post('/users/show', [LibraryAccessController::class, 'accessLibrary'])
+    ->name('users.show.process');
+
+Route::get('/users/show/{user}', [LibraryAccessController::class, 'showUserLibrary'])
+    ->name('users.library.show');
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

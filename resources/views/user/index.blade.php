@@ -9,7 +9,7 @@
                 <a class="nav-link" href="{{ route('users.access') }}">Дать доступ другому пользователю</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Посмотреть книги другого пользователя</a>
+                <a class="nav-link" href="{{ route('users.show.form') }}">Посмотреть книги другого пользователя</a>
             </li>
         </ul>
         <div class="container my-5">

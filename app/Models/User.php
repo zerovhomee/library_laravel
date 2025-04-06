@@ -18,6 +18,11 @@ class User extends Authenticatable
         return $this->HasMany(Book::class,'user_id','id')->chaperone();
     }
 
+    public function accessibleLibraries()
+    {
+        return $this->hasMany(LibraryAccess::class, 'user_id');
+    }
+
     public function sharedLibraryTo()
     {
         return $this->hasMany(LibraryAccess::class, 'owner_id');
@@ -29,13 +34,6 @@ class User extends Authenticatable
         return $this->hasMany(LibraryAccess::class, 'user_id');
     }
 
-    // Получить все доступные библиотеки
-    public function accessibleLibraries()
-    {
-        return User::whereHas('sharedLibraryTo', function($q) {
-            $q->where('user_id', $this->id);
-        });
-    }
     /**
      * The attributes that are mass assignable.
      *
