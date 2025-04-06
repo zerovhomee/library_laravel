@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\Library\LibraryResource;
 use App\Models\LibraryAccess;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -24,7 +25,7 @@ class LibraryAccessController extends Controller
                 'owner_id' => auth()->id(),
                 'user_id' => $validated['user_id']
             ])->exists()) {
-                return back()->with('info', 'Этот пользователь уже имеет доступ');
+                return response()->json(['message' => 'Этот пользователь уже имеет доступ']);
             }
 
             // Создаем запись о доступе
@@ -33,10 +34,10 @@ class LibraryAccessController extends Controller
                 'user_id' => $validated['user_id']
             ]);
 
-            return back()->with('success', 'Доступ успешно предоставлен!');
+            return response()->json(['message' => 'Доступ успешно предоставлен!']);
 
         } catch (\Exception $e) {
-            return back()->with('error', 'Ошибка: '.$e->getMessage());
+            return response()->json(['message' => 'Ошибка: '.$e->getMessage()]);
         }
     }
 
@@ -70,17 +71,14 @@ class LibraryAccessController extends Controller
             !LibraryAccess::where('owner_id', $user->id)
                 ->where('user_id', auth()->id())
                 ->exists()) {
-            return redirect()->route('library.access.form')
-                ->with('error', 'У вас нет доступа к этой библиотеке');
+            return response()->json(['У вас нет доступа к этой библиотеке'])
+                ;
         }
 
         // Загружаем книги с информацией о владельце
         $books = $user->books()->with('user')->get();
 
-        return view('library.show', [
-            'books' => $books,
-            'libraryOwner' => $user
-        ]);
+        return $books;
     }
     /*
 

@@ -29,6 +29,6 @@ class UpdateController extends Controller
         $data_to_update += ['user_id' => Auth::id()];
 
         $book -> update($data_to_update);
-        return redirect()->route('books.show', $book->id);
+        return $data_to_update;
     }
 }

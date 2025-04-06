@@ -12,7 +12,7 @@ class RestoreController extends Controller
     {
         $book = Book::onlyTrashed()->findOrFail($id);
         $book->restore();
-        return redirect()->route('books.index');
+        return $book;
     }
 }
 
