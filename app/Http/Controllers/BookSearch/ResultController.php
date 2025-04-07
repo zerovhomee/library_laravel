@@ -1,18 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\BookSearch;
 
-use App\Services\BookService;
+use App\Http\Controllers\Controller;
+use App\Services\BookSearch\Service;
 
-class BookSearchController extends Controller
+class ResultController extends BaseController
 {
-    protected $bookService;
-
-    public function __construct(BookService $bookService)
-    {
-        $this->bookService = $bookService;
-    }
-
     public function searchAndSaveBooks($query)
     {
 

@@ -4,12 +4,12 @@ use App\Http\Controllers\Book\CreateController;
 use App\Http\Controllers\Book\DestroyController;
 use App\Http\Controllers\Book\EditController;
 use App\Http\Controllers\Book\IndexController;
+use App\Http\Controllers\Book\RestoreController;
 use App\Http\Controllers\Book\ShowController;
 use App\Http\Controllers\Book\StoreController;
-use App\Http\Controllers\Book\UpdateController;
-use App\Http\Controllers\Book\RestoreController;
 use App\Http\Controllers\Book\TrashController;
-use App\Http\Controllers\LibraryAccessController;
+use App\Http\Controllers\Book\UpdateController;
+use App\Http\Controllers\Library\AdmissionController;
 use App\Http\Controllers\User\AccessController;
 use App\Http\Controllers\User\ListController;
 use Illuminate\Support\Facades\Auth;
@@ -32,17 +32,17 @@ Route::group([], function () {
 Route::get('/users', ListController::class)->name('users.index');
 Route::get('/users/access', AccessController::class)->name('users.access');
 
-Route::post('/users/access', [LibraryAccessController::class, 'grantAccessById'])
+Route::post('/users/access', [AdmissionController::class, 'grantAccessById'])
     ->name('users.access.process');
 
 
-Route::get('/users/show', [LibraryAccessController::class, 'showAccessForm'])
+Route::get('/users/show', [AdmissionController::class, 'showAccessForm'])
     ->name('users.show.form');
 
-Route::post('/users/show', [LibraryAccessController::class, 'accessLibrary'])
+Route::post('/users/show', [AdmissionController::class, 'accessLibrary'])
     ->name('users.show.process');
 
-Route::get('/users/show/{user}', [LibraryAccessController::class, 'showUserLibrary'])
+Route::get('/users/show/{user}', [AdmissionController::class, 'showUserLibrary'])
     ->name('users.library.show');
 
 Auth::routes();

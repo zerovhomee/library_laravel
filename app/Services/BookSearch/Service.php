@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\BookSearch;
 use App\Models\Book;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 
-class BookService
+class Service
 {
     public function saveBook($name, $text)
     {
