@@ -9,17 +9,18 @@ class ResultController extends BaseController
 {
     public function searchAndSaveBooks($query)
     {
+        $userId = auth()->id();
 
         $googleBooks = $this->bookService->searchBooks($query);
 
         foreach ($googleBooks as $book) {
-            $this->bookService->saveBook($book['title'], $book['description']);
+            $this->bookService->saveBook($book['title'], $book['description'], $userId);
         }
 
         $mannBooks = $this->bookService->searchBooksMann($query);
 
         foreach ($mannBooks as $book) {
-            $this->bookService->saveBook($book['title'], $book['url']);
+            $this->bookService->saveBook($book['title'], $book['url'], $userId);
         }
 
         return response()->json([

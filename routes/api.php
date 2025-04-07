@@ -57,4 +57,6 @@ Route::group(['middleware'=> 'jwt.auth'], function () {
     Route::get('/users/show/{user}', [AdmissionController::class, 'showUserLibrary']);
 });
 
-Route::get('/search-books/{query}', [ResultController::class, 'searchAndSaveBooks']);
+Route::group(['middleware'=> 'jwt.auth'], function () {
+    Route::get('/search-books/{query}', [ResultController::class, 'searchAndSaveBooks']);
+});

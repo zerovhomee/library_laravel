@@ -7,11 +7,8 @@ use Illuminate\Support\Facades\Http;
 
 class Service
 {
-    public function saveBook($name, $text)
+    public function saveBook($name, $text, $userId)
     {
-
-        $userId = Auth::id();
-
 
         $book = Book::firstOrCreate(
             ['name' => $name, 'user_id' => $userId],
