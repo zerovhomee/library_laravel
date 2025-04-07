@@ -40,7 +40,9 @@ Route::group(['middleware'=> 'jwt.auth'], function () {
     Route::get('/books/{book}', ShowController::class);
     /*Route::patch('books/{book}', UpdateController::class);
 
-    patch method is not supported by postman, so for update uses post
+    patch method is not supported by postman form-data,
+    when you need to add .txt file,
+    so for update uses post
 
     */
     Route::post('books/{book}', UpdateController::class);
