@@ -1,8 +1,8 @@
 <IfModule mod_rewrite.c>
     <IfModule mod_negotiation.c>
         RewriteEngine On
-        RewriteRule ^(.*)$ public/$1 [L]
-        Options -MultiViews -Indexes
+        RewriteCond %{REQUEST_METHOD} ^PATCH [NC]
+        RewriteRule .* - [L] # Не изменяем метод
     </IfModule>
 
     RewriteEngine On

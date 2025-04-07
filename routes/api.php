@@ -10,6 +10,7 @@ use App\Http\Controllers\Book\ShowController;
 use App\Http\Controllers\Book\StoreController;
 use App\Http\Controllers\Book\TrashController;
 use App\Http\Controllers\Book\UpdateController;
+use App\Http\Controllers\BookSearchController;
 use App\Http\Controllers\LibraryAccessController;
 use App\Http\Controllers\User\ListController;
 use Illuminate\Http\Request;
@@ -50,3 +51,5 @@ Route::group(['middleware'=> 'jwt.auth'], function () {
     Route::post('/users/access', [LibraryAccessController::class, 'grantAccessById']);
     Route::get('/users/show/{user}', [LibraryAccessController::class, 'showUserLibrary']);
 });
+
+Route::get('/search-books/{query}', [BookSearchController::class, 'searchAndSaveBooks']);
